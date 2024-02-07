@@ -12,14 +12,23 @@
   <main>
     <h1>Vanilla JavaScript App</h1>
     <p>Loading content from the API: <b id="name">...</b></p>
+    <div>
+      <button id="list" onclick="list()">List</button>
+    </div>
   </main>
 </body>
 
 <script>
-(async function() {
-  const { text } = await( await fetch(`/api/message`)).json();
-  document.querySelector('#name').textContent = text;
-}());
+// (async function() {
+//   const { text } = await( await fetch(`/api/message`)).json();
+//   document.querySelector('#name').textContent = text;
+// }());
+async function list() {
+  const endpoint = '/data-api/rest/algo';
+  const response = await fetch(endpoint);
+  const data = await response.json();
+  console.table(data.value);
+}
 </script>
 
 </html>
